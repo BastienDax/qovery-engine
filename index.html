@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Qovery Engine</title>
+	<link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<header class="min-h-screen bg-black flex">
+		<div class="w-screen px-12 md:px-24 text-white lg:w-6/12 lg:pl-36 ">
+			<img class="mt-10 md:mb-40 mb-10" src="./img/logo.svg" alt="Logo Qovery">
+
+			<div class="hero_text">
+				<div>
+					<h1 class="text-4xl font-bold mb-6 ">
+						Quovery Engine
+						<a class="github-button" href="https://github.com/Qovery/engine" data-size="large" data-show-count="true" aria-label="Star Qovery/engine on GitHub">Star</a>
+					</h1>
+					<h2 class="text-2xl font-medium mb-6">
+						Abstraction layer to deploy microservices <br> applications on any Cloud provider.
+					</h2>
+					<p class="text-purple mb-12">
+						Qovery Engine is an open-source abstraction layer product <br> that turns easy apps 
+						deployment on AWS, GCP, Azure and <br> others Cloud providers.
+					</p>
+				</div>
+	
+				<div class="md:flex md:flex-row mb-10">
+					<div class="mb-4">
+						<button  class="flex items-center bg-github px-4 py-2 rounded-md mr-6">
+							<img class="mr-2" src="./img/github.svg" alt="icon github"> 
+							See on Github
+						</button>
+					</div>
+					<div>
+						<button class="flex items-center bg-discord px-4 py-2 rounded-md ">
+							<img class="mr-2" src="./img/discord.svg" alt="icon discord"> 
+							Join us on Discord
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="hero hidden md:block md:w-6/12 self-center">
+			<img class="dashes" src="./img/dashes.svg" alt="dashes">
+			<img class="illu-1" src="./img/top-hero-illu.svg" alt="top-hero-illu">
+			<img class="illu-2" src="./img/middle-hero-illu.svg" alt="middle-hero-illu">
+			<img class="illu-3" src="./img/bottom-hero-illu.svg" alt="bottom-hero-illu">
+		</div>
+	</header>
+
+	<section class=" bg-white flex justify-center">
+		<div class="w-4/5 text-center md:w-3/5 md:px-16">
+			<h1 class="text-3xl font-extrabold mt-24 mb-6">How does it work ?</h1>
+			<p class="mb-8">
+				Qovery Engine is an open-source abstraction layer product that turns easy apps deployment on AWS, GCP,
+				Azure and others Cloud providers. The Qovery Engine is coded in Rust and takes advantage of Terraform,
+				Helm, Kubectl, Docker to manage resources.
+			</p>
+
+			<img src="./img/policies.svg" alt="polices">
+		</div>
+	</section>
+
+	<section class="min-h-screen bg-white flex justify-center">
+		<div class="w-4/5 text-center md:w-3/5 md:px-10">
+			<div class="usage pb-24">
+				<h1 class="text-3xl font-extrabold mt-24 mb-6">Usage</h1>
+				<p>
+					Initialize EKS (AWS Kubernetes) and ECR (AWS container registry) on AWS
+				</p>
+
+			</div>
+			<div class="p-6 bg-creme rounded-sm mb-12 text-left">
+				<span class="font-bold text-xs text-white bg-rust rounded px-2 py-1 mb-6 inline-block ">RUST</span>
+
+<pre class="rust overflow-auto" style="font-size: 12px; line-height: 19px; color: #454658;"><span style="color: #5D64D2;">let</span> engine <span style="color: #B160F0">=</span> Engine<span style="color: #B160F0">::</span><span style="color: #FF6240;">new</span><span>&#40;</span>
+	context<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// parameters</span>
+	local_docker<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// initialize Docker as a Build Platform</span>
+	ecr<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// initialize Elastic Container Registry</span>
+	aws<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// initialize AWS account</span>
+	cloudflare<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// initialize Cloudflare as DNS Nameservers</span>
+<span>&#41;</span><span style="color: #B160F0">;</span>
+&nbsp;
+<span style="color: #5D64D2;">let</span> session <span style="color: #B160F0">=</span> <span style="color: #5D64D2;">match</span> engine.session<span>&#40;</span><span>&#41;</span> <span>&#123;</span>
+	Ok<span>&#40;</span>session<span>&#41;</span> <span style="color: #B160F0">=&gt;</span> session<span style="color: #B160F0">,</span> <span style="color: #A8A8C1; font-style: italic;">// get the session</span>
+	Err<span>&#40;</span>config_error<span>&#41;</span> <span style="color: #B160F0">=&gt;</span> panic<span style="color: #B160F0">!</span><span>&#40;</span><span style="color: #4548B0;">&quot;configuration error {:?}&quot;</span><span style="color: #B160F0">,</span> config_error<span>&#41;</span><span style="color: #B160F0">,</span>
+<span>&#125;</span><span style="color: #B160F0">;</span>
+&nbsp;
+<span style="color: #5D64D2;">let</span> <span style="color: #5D64D2;">mut</span> tx <span style="color: #B160F0">=</span> session.transaction<span>&#40;</span><span>&#41;</span><span style="color: #B160F0">;</span>
+&nbsp;
+<span style="color: #A8A8C1; font-style: italic;">// create EKS (AWS managed Kubernetes cluster)</span>
+tx.create_kubernetes<span>&#40;</span><span style="color: #B160F0">&amp;</span>eks<span>&#41;</span><span style="color: #B160F0">;</span>
+&nbsp;
+<span style="color: #A8A8C1; font-style: italic;">// create the infrastructure and wait for the result</span>
+<span style="color: #5D64D2;">match</span> tx.commit<span>&#40;</span><span>&#41;</span> <span>&#123;</span>
+	TransactionResult<span style="color: #B160F0">::</span><span style="color: #FF6240;">Ok</span> <span style="color: #B160F0">=&gt;</span> println<span style="color: #B160F0">!</span><span>&#40;</span><span style="color: #4548B0;">&quot;OK&quot;</span><span>&#41;</span><span style="color: #B160F0">,</span>
+	TransactionResult<span style="color: #B160F0">::</span><span style="color: #FF6240;">Rollback</span><span>&#40;</span>commit_err<span>&#41;</span> <span style="color: #B160F0">=&gt;</span> println<span style="color: #B160F0">!</span><span>&#40;</span><span style="color: #4548B0;">&quot;ERROR but rollback OK&quot;</span><span>&#41;</span><span style="color: #B160F0">,</span>
+	TransactionResult<span style="color: #B160F0">::</span><span style="color: #FF6240;">UnrecoverableError</span><span>&#40;</span>commit_err<span style="color: #B160F0">,</span> rollback_err<span>&#41;</span> <span style="color: #B160F0">=&gt;</span> println<span style="color: #B160F0">!</span><span>&#40;</span><span style="color: #4548B0;">&quot;FATAL ERROR&quot;</span><span>&#41;</span>
+<span>&#125;</span><span style="color: #B160F0">;</span></pre>
+			</div>
+
+			<div class="flex text-white">
+				<div class="md:flex md:flex-row mb-10">
+					<div class="mb-4">
+						<button  class="flex items-center bg-github px-4 py-2 rounded-md mr-6">
+							<img class="mr-2" src="./img/github.svg" alt="icon github"> 
+							See on Github
+						</button>
+					</div>
+					<div>
+						<button class="flex items-center bg-discord px-4 py-2 rounded-md ">
+							<img class="mr-2" src="./img/discord.svg" alt="icon discord"> 
+							Join us on Discord
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="my-20 flex justify-center">
+		<div class="my-20 w-8/12 grid md:gap-x-40 md:grid-cols-2 md:grid-rows-2">
+			<div class="">
+				<div class="h-48">
+					<img src="./img/keys/app.svg" alt="image app">
+				</div>
+	
+				<h2 class="text-xl font-medium mb-6">Deploy real world applications</h2>
+	
+				<p class="font-light">
+					Qovery Engine empowers you to deploy complex applications, such as a backend, a frontend, and a database in a very simple way. 
+					<br>
+					<br>
+					Servers, networking, security, all is done by the Engine for you.
+				</p>
+	
+				<a class="text-purple font-bold uppercase mt-3" href="#">see more</a>
+			</div>
+	
+			<div class="mt-28 md:mt-0">
+				<div class="h-48">
+					<img src="./img/keys/resilient.svg" alt="image resilient">
+				</div>
+	
+				<h2 class="text-xl font-medium mb-6">Resilient is key</h2>
+	
+				<p class="font-light">
+					Qovery Engine knows when something goes wrong on the deployment of your applications. Qovery Engine is built with resiliency in mind.
+					<br>
+					<br>
+					A transactional engine inspired by what is provided into ACID databases has been developed at the heart of the product to rollback on a consistent and working application version when something goes wrong.
+				</p>
+	
+				<a class="text-purple font-bold uppercase mt-3" href="#">see more</a>
+			</div>
+	
+			<div class="mt-28 md:mt-0">
+				<div class="h-64">
+					<img src="./img/keys/top.svg" alt="image top">
+				</div>	
+
+				<h2 class="text-xl font-medium mb-6">On top of the best tools</h2>
+	
+				<p class="font-light">
+					Qovery Engine does not reinvent the wheel. It takes advantage of the best tools in the Cloud industry, such as Kubernetes, Terraform, and Helm to manage the deployment of the infrastructure and your applications.
+					<br>
+					<br>
+					Servers, networking, security, all is done by the Engine for you.
+				</p>
+	
+				<a class="text-purple font-bold uppercase mt-3" href="#">see more</a>
+			</div>
+	
+			<div class="mt-28 md:mt-0">
+				<div class="h-64">
+					<img src="./img/keys/policies.svg" alt="image polices">
+				</div>
+	
+				<h2 class="text-xl font-medium mb-6">Extensible</h2>
+	
+				<p class="font-light">
+					Qovery Engine is built to be highly extensible. Adding the support of a Cloud provider or a Continuous Integration platform is as simple as implementing a simple programmatic interface.
+				</p>
+	
+				<a class="text-purple font-bold uppercase mt-3" href="#">see more</a>
+			</div>
+		</div>
+	</section>
+
+	<footer class="w-screen flex justify-center flex-col">
+
+		<div class="flex justify-center">
+			<h1 class="text-3xl font-extrabold mt-24 mb-6">They use Qovery Engine</h1>
+		</div>
+		
+		<div class="py-20 flex justify-center">
+			<div class="grid grid-cols-1 gap-y-10 md:gap-y-0 md:grid-cols-3 md:gap-10">
+				<div class="flex items-center justify-center">
+					<img class="w-52 " src="./img/strapi.svg" alt="logo strapi">
+				</div>
+				<div class="flex items-center justify-center">
+					<img src="./img/zendesk.svg" alt="logo zendesk">
+				</div>
+				<div class="flex items-center justify-center">
+					<img src="./img/helios.svg" alt="logo helios">
+				</div>
+			</div>
+		</div>
+		
+		<div class="w-full h-44 bg-black"></div>
+	</footer>
+
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
